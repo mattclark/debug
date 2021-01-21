@@ -1,15 +1,17 @@
-FROM ubuntu:18.04
+FROM alpine
 
-RUN apt-get update && apt-get install -y curl \
-dnsutils \
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUN apk add --update ca-certificates openssl && update-ca-certificates
+
+RUN apk add --update \
+busybox-extras \
+curl \
 diffutils \
-telnet \
-iputils-ping \
 iptables \
 iproute2 \
+bind-tools \
 jq \
 net-tools \
-netperf \
 openssl \
 postgresql-client \
 gzip \
@@ -17,5 +19,6 @@ git \
 htop \
 unzip \ 
 vim \
-wget \
-&& apt-get clean && rm -rf /var/lib/apt/lists
+wget
+
+RUN apk add --update bash && rm -rf /var/cache/apk/*
