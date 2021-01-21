@@ -11,6 +11,7 @@ jq \
 net-tools \
 netperf \
 openssl \
+postgresql-client \
 gzip \
 git \
 htop \
